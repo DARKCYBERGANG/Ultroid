@@ -92,15 +92,13 @@ async def adaudroid(event):
 )
 async def hbd(event):
     if not event.pattern_match.group(1):
-        await eor(event, "`Put input in dd/mm/yyyy format`")
-        return
+        return await eor(event, "`Put input in dd/mm/yyyy format`")
     if event.reply_to_msg_id:
         kk = await event.get_reply_message()
         nam = await ultroid_bot.get_entity(kk.from_id)
         name = nam.first_name
     else:
-        a = await ultroid_bot.get_me()
-        name = a.first_name
+        name = ultroid_bot.me.first_name
     zn = pytz.timezone("Asia/Kolkata")
     abhi = dt.now(zn)
     n = event.text
@@ -112,7 +110,10 @@ async def hbd(event):
     day = int(p)
     month = r
     paida = q
-    jn = dt.strptime(paida, "%d/%m/%Y")
+    try:
+        jn = dt.strptime(paida, "%d/%m/%Y")
+    except BaseException:
+        return await eor(event, "`Put input in dd/mm/yyyy format`")
     jnm = zn.localize(jn)
     zinda = abhi - jnm
     barsh = (zinda.total_seconds()) / (365.242 * 24 * 3600)
