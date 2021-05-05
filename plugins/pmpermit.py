@@ -193,6 +193,10 @@ if sett == "True" and sett != "False":
             try:
                 wrn = COUNT_PM[user.id] + 1
             except KeyError:
+                try:
+                    await asst.send_message(Var.LOG_CHANNEL, f"Incoming PM from {mention}!")
+                except:
+                    await ultroid.send_message(Var.LOG_CHANNEL, f"Incoming PM from {mention}!")
                 wrn = 1
             if user.id in LASTMSG:
                 prevmsg = LASTMSG[user.id]
