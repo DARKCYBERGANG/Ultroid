@@ -5,17 +5,15 @@
 
 FROM programmingerror/ultroid:v0.0.1
 
-ENV TERM xterm-256color
 RUN mkdir /usr/share/man/man1/
-RUN apt-get install aria2 default-jre -y
+RUN apt-upgrade -y && apt-get install aria2 default-jre -y
 
 RUN git clone -b dev https://github.com/TeamUltroid/Ultroid.git /root/TeamUltroid/
 
 RUN git clone https://github.com/1Danish-00/glitch_me.git && pip install -e ./glitch_me
 WORKDIR /root/TeamUltroid/
 
-RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
-RUN npm install -g npm@7.11.1 -g
-RUN npm install -g heroku
+RUN pip3 install -r requirements.txt
+RUN npm install -g npm@7.11.2 -g
 RUN npm install
 RUN npm run build
