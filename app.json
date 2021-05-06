@@ -36,12 +36,12 @@
         },
         "REDIS_URI": {
             "description": "Redis endpoint URL, from redislabs.com",
-            "value": ""
+            "value": "",
             "required": false
         },
         "REDIS_PASSWORD": {
             "description": "Redis endpoint password, from redislabs.com",
-            "value": ""
+            "value": "",
             "required": false 
         },
         "HEROKU_API": {
