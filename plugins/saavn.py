@@ -30,36 +30,29 @@ async def siesace(e):
     lol = await eor(e, "`...`")
     sung = song.replace(" ", "%20")
     url = f"https://jostapi.herokuapp.com/saavn?query={sung}"
-    k = (r.get(url)).json()
-    m = []
-    for x in k:
-        m.append(
-            {
-                "title": x["song"],
-                "url": x["media_url"],
-                "img": x["image"],
-                "duration": x["duration"],
-                "singers": x["singers"],
-            }
-        )
-    urlretrieve(m[0]["url"], m[0]["title"] + ".mp3")
-    urlretrieve(m[0]["img"], m[0]["title"] + ".jpg")
+    k = (r.get(url)).json()[0]
+    title = k["song"]
+    urrl = k["media_url"]
+    img = k["image"]
+    duration = k["duration"]
+    singers = k["singers"]
+    urlretrieve(urrl, title + ".mp3")
+    urlretrieve(img, title + ".jpg")
     okk = await uploader(
-        m[0]["title"] + ".mp3", m[0]["title"] + ".mp3", hmm, lol, "Uploading"
+        title + ".mp3", title + ".mp3", hmm, lol, "Uploading" + title + "..."
     )
     await ultroid_bot.send_file(
         e.chat_id,
         okk,
         attributes=[
             DocumentAttributeAudio(
-                duration=int(m[0]["duration"]),
-                title=m[0]["title"],
-                performer=m[0]["singers"],
+                duration=int(duration),
+                title=title,
+                performer=singers,
             )
         ],
         supports_streaming=True,
-        voice_note=True,
-        thumb=m[0]["title"] + ".jpg",
+        thumb=title + ".jpg",
     )
     await lol.delete()
 
