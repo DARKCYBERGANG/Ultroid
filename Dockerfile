@@ -6,7 +6,7 @@
 FROM programmingerror/ultroid:v0.0.1
 
 RUN mkdir /usr/share/man/man1/
-RUN apt-upgrade -y && apt-get install aria2 default-jre -y
+RUN apt-get upgrade -y && apt-get install aria2 default-jre -y
 
 RUN git clone -b dev https://github.com/TeamUltroid/Ultroid.git /root/TeamUltroid/
 
