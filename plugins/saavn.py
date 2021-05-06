@@ -12,7 +12,8 @@
    `search song on saavn`
 """
 
-import time, os
+import os
+import time
 from urllib.request import urlretrieve
 
 import requests as r
@@ -55,8 +56,8 @@ async def siesace(e):
         thumb=title + ".jpg",
     )
     await lol.delete()
-    os.remove(title+".mp3")
-    os.remove(title+".jpg")
+    os.remove(title + ".mp3")
+    os.remove(title + ".jpg")
 
 
 HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=HNDLR)}"})
